@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OKEEBUYY - UMKM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neon: "#00ff9d",
+              dark: "#0f172a",
+              pink: "#ff2d75",
+              purple: "#7e22ce",
+            },
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+              mono: ["Space Mono", "monospace"],
+            },
+            animation: {
+              "spin-slow": "spin 3s linear infinite",
+              float: "float 6s ease-in-out infinite",
+              "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom Styles */
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow-x: hidden;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #00ff9d, #00e0ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .menu-card {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .menu-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px -5px rgba(0, 255, 157, 0.2);
+        border-color: rgba(0, 255, 157, 0.3);
+      }
+
+      .sticker {
+        position: absolute;
+        transform: rotate(-15deg);
+        font-family: "Space Mono", monospace;
+        font-weight: bold;
+        padding: 0.25rem 1rem;
+        border-radius: 9999px;
+        top: -10px;
+        right: -10px;
+        z-index: 10;
+      }
+
+      .glow {
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+      }
+
+      .social-icon {
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .scroll-hidden::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scroll-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Cursor Effect -->
+    <div
+      class="cursor-dot fixed w-4 h-4 bg-neon rounded-full pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+    ></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full py-4 px-6 z-40 bg-dark/80 backdrop-blur-md border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-10 h-10 rounded-full bg-neon flex items-center justify-center text-dark font-bold text-xl"
+          >
+            <img
+              src="https://scontent.cdninstagram.com/v/t51.2885-19/274647745_3215836695363484_6962188860604869137_n.jpg?stp=cp0_dst-jpg_s110x80_tt6&_nc_cat=108&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=n6qZbiEGQH0Q7kNvwEheruH&_nc_oc=Adm83GPD780qUcMTHN1D9ZRap_SL68waNzIKHAKtqkaiVqE3PZ3J1HWIgVYt-rTcxS4&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&oh=00_AfO1Fg9WewKNA0qNauYMq8mYLxwMeLApYHLLiwR7De86OA&oe=68605062"
+              alt="logo"
+            />
+          </div>
+          <span class="text-2xl font-bold gradient-text">OKEEBUYY</span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="#home"
+            class="text-gray-300 hover:text-neon transition-all font-medium"
+            >Beranda</a
+          >
+          <a
+            href="#menu"
+            class="text-gray-300 hover:text-neon transition-all font-medium"
+            >Menu</a
+          >
+          <a
+            href="#testimoni"
+            class="text-gray-300 hover:text-neon transition-all font-medium"
+            >Testimoni Kami</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-300 hover:text-neon transition-all font-medium"
+            >Lokasi</a
+          >
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button
+            class="md:hidden text-gray-300 focus:outline-none"
+            id="menu-toggle"
+          >
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+          <a
+            href="https://wa.me/6285852015520"
+            target="_blank"
+            class="hidden md:flex items-center space-x-2 bg-neon text-dark px-4 py-2 rounded-full font-bold hover:bg-opacity-80 transition"
+          >
+            <i class="fab fa-whatsapp"></i>
+            <span>Pesan Sekarang</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-dark z-30 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300"
+    >
+      <a href="#home" class="text-3xl font-bold hover:text-neon transition"
+        >Beranda</a
+      >
+      <a href="#menu" class="text-3xl font-bold hover:text-neon transition"
+        >Menu</a
+      >
+      <a href="#testimoni" class="text-3xl font-bold hover:text-neon transition"
+        >Testimoni Kami</a
+      >
+      <a href="#contact" class="text-3xl font-bold hover:text-neon transition"
+        >Lokasi</a
+      >
+      <a
+        href="https://wa.me/6285852015520"
+        target="_blank"
+        class="mt-8 flex items-center space-x-2 bg-neon text-dark px-6 py-3 rounded-full font-bold hover:bg-opacity-80 transition text-xl"
+      >
+        <i class="fab fa-whatsapp"></i>
+        <span>Pesan Sekarang</span>
+      </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center relative overflow-hidden pt-20"
+    >
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-dark/90 to-purple-900/20"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center">
+          <div
+            class="lg:w-1/2 mb-12 lg:mb-0 animate__animated animate__fadeInLeft"
+          >
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span class="gradient-text">OKEEBUYY</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-lg">
+              Kami tidak hanya menyajikan Snack, tapi juga kenyamanan setiap
+              Customer.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#menu"
+                class="px-8 py-3 bg-neon text-dark font-bold rounded-full hover:bg-opacity-90 transition transform hover:scale-105"
+              >
+                Lihat Menu
+              </a>
+              <a
+                href="https://wa.me/6285852015520"
+                target="_blank"
+                class="px-8 py-3 border-2 border-neon text-neon font-bold rounded-full hover:bg-neon hover:bg-opacity-10 transition transform hover:scale-105"
+              >
+                Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+
+            <div class="mt-12 flex items-center space-x-6">
+              <div>
+                <div class="flex text-yellow-400 mb-1">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-gray-300">500+ Pelanggan Puas</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="lg:w-1/2 flex justify-center animate__animated animate__fadeInRight"
+          >
+            <div class="relative">
+              <img
+                src="kak nad.jpg"
+                alt=""
+                class="w-full max-w-md rounded-2xl border-4 border-neon/30 shadow-2xl floating"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <a href="#menu" class="text-gray-300 hover:text-neon transition">
+          <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 relative">
+      <div
+        class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-purple-900/30 to-transparent z-0"
+      ></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Menu Andalan Kami
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Menu yang kami buat sangat berkualitas dan nikmat
+          </p>
+        </div>
+
+        <div class="flex overflow-x-auto pb-8 scroll-hidden space-x-6">
+          <button
+            class="filter-btn flex-shrink-0 px-6 py-2 bg-neon text-dark font-bold rounded-full"
+            data-filter="all"
+          >
+            Semua Menu
+          </button>
+          <button
+            class="filter-btn flex-shrink-0 px-6 py-2 bg-dark border border-gray-700 hover:border-neon text-gray-300 font-bold rounded-full"
+            data-filter="Makanan"
+          >
+            Makanan
+          </button>
+          <button
+            class="filter-btn flex-shrink-0 px-6 py-2 bg-dark border border-gray-700 hover:border-neon text-gray-300 font-bold rounded-full"
+            data-filter="Ayam"
+          >
+            Ayam
+          </button>
+          <button
+            class="filter-btn flex-shrink-0 px-6 py-2 bg-dark border border-gray-700 hover:border-neon text-gray-300 font-bold rounded-full"
+            data-filter="Spicy"
+          >
+            Spicy
+          </button>
+          <button
+            class="filter-btn flex-shrink-0 px-6 py-2 bg-dark border border-gray-700 hover:border-neon text-gray-300 font-bold rounded-full"
+            data-filter="Camilan"
+          >
+            Cemilan
+          </button>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"
+          id="menu-grid"
+        >
+          <!-- Menu Item 1 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="Camilan"
+          >
+            <div class="sticker bg-neon text-dark">TERLARIS</div>
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="mochi.jpg"
+                alt="Mochi"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">Mochi</h3>
+              <span class="text-neon font-bold text-xl">Rp 10K</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              🥛10 - 12 Bites mochi 🥛Vanilla cream 🥛Oreo Crumb
+            </p>
+            <button
+              onclick="orderWhatsApp('Mochi Bites', 10000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+
+          <!-- Menu Item 2 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="Makanan"
+            data-category="Spicy"
+          >
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="pangsit.jpg"
+                alt="Pangsit Chili Oil"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">Crispy Gang</h3>
+              <span class="text-neon font-bold text-xl">Rp 35K</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              dapat 7 pangsit - sudah free chili oil & kerupuk pangsit - siap
+              makan + dapat alat makan (sendok/garpu)
+            </p>
+            <button
+              onclick="orderWhatsApp('Pangsit Chili Oil', 10000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+
+          <!-- Menu Item 3 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="Makanan"
+            data-category="Ayam"
+          >
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="ricebowl.jpg"
+                alt="Ayam Bakar Rice Bowl"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">RiceBowl Ayam</h3>
+              <br />
+              <span class="text-neon font-bold text-xl">Rp 10K</span>
+            </div>
+            <p class="text-gray-400 mb-6">Ayam Bakar</p>
+            <button
+              onclick="orderWhatsApp('RiceBowl Ayam Bakar', 10000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+
+          <!-- Menu Item 4 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="snack"
+          >
+            <div class="sticker bg-pink text-white">BARU</div>
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="bomboloni.jpg"
+                alt="Bomboloni"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">Bomboloni</h3>
+              <span class="text-neon font-bold text-xl">Rp 3K</span>
+            </div>
+            <p class="text-gray-400 mb-6">Ready Varian strawberry dan coklat</p>
+            <button
+              onclick="orderWhatsApp('Bomboloni', 3000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+
+          <!-- Menu Item 5 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="Camilan"
+            data-category="Spicy"
+          >
+            <div class="sticker bg-purple text-white">BEST SELLER</div>
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="ceker.jpg"
+                alt="Ceker"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">Ceker</h3>
+              <span class="text-neon font-bold text-xl">Rp 7K</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Tersedia 2 variant = 💥Pedas Mampus 💥Tidak pedas 1 porsi isi 4
+              ceker (7.000) Hayukk sinii yangg suka, ga suka pedess wajibb
+              merapatt 🫰🏼 cocok kalauu mauu buat lauk mamam 😛🔥
+            </p>
+            <button
+              onclick="orderWhatsApp('Ceker Mercon', 7000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+
+          <!-- Menu Item 6 -->
+          <div
+            class="menu-card rounded-2xl p-6 relative menu-item"
+            data-category="Camilan"
+          >
+            <div class="h-48 overflow-hidden rounded-xl mb-4">
+              <img
+                src="nugget.jpg"
+                alt="Nugget"
+                class="w-full h-full object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="text-2xl font-bold">Nugget</h3>
+              <span class="text-neon font-bold text-xl">Rp 10K</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Nugget dengan pilihan topping yang beragam
+            </p>
+            <button
+              onclick="orderWhatsApp('Nugget', 10000)"
+              class="w-full bg-gradient-to-r from-neon to-cyan-400 text-dark font-bold py-3 px-6 rounded-full hover:opacity-90 transition flex items-center justify-center space-x-2"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Pesan Sekarang</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="text-center mt-16">
+          <a
+            href="https://wa.me/6285852015520?text=Hai%20OKEEBUYY!%20Saya%20mau%20memesan%20beberapa%20menu%20dari%20kalian"
+            target="_blank"
+            class="inline-flex items-center px-8 py-4 bg-dark border-2 border-neon text-neon font-bold rounded-full hover:bg-neon hover:bg-opacity-10 transition group"
+          >
+            <span>Lihat Menu Lengkap di WhatsApp</span>
+            <i
+              class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition"
+            ></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-dark" id="testimoni">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Testimoni
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Ini adalah testimoni dari para pelanggan
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div
+            class="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-neon transition"
+          >
+            <img src="testimoni 1.jpg" alt="" />
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-neon transition"
+          >
+            <img src="testimoni 2.jpg" alt="" />
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div
+            class="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-neon transition"
+          >
+            <img src="testimoni 3.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-20 bg-gradient-to-b from-purple-900/30 to-dark"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            Temukan Kami
+          </h2>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Lapar lagi? Datang langsung atau hubungi kami.
+          </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row">
+          <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+            <div
+              class="bg-dark/50 border border-gray-700 rounded-2xl p-8 backdrop-blur-sm"
+            >
+              <h3 class="text-2xl font-bold mb-6">Kunjungi Kami</h3>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-neon mr-4 mt-1">
+                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold mb-1">Lokasi</h4>
+                    <p class="text-gray-300">Surabaya</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-neon mr-4 mt-1">
+                    <i class="fas fa-clock text-2xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold mb-1">Jam Buka</h4>
+                    <p class="text-gray-300">
+                      Setiap Hari: 11.00 - 22.00<br />Jumat-Sabtu: 11.00 - 24.00
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-neon mr-4 mt-1">
+                    <i class="fas fa-phone-alt text-2xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold mb-1">Kontak</h4>
+                    <p class="text-gray-300">
+                      +62 858-5201-5520<br />hello@okeebuyy.id
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <h4 class="text-xl font-bold mb-4">Ikuti Kami</h4>
+                <div class="flex space-x-4">
+                  <a
+                    href="https://www.instagram.com/okeebuyy.id/"
+                    class="social-icon w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-xl hover:bg-neon hover:text-dark"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="https://wa.me/6285852015520"
+                    class="social-icon w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-xl hover:bg-green-500 hover:text-white"
+                  >
+                    <i class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-1/2">
+            <div
+              class="h-full rounded-2xl overflow-hidden border border-gray-700"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126646.20750916582!2d112.71268375!3d-7.275619450000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbf8381ac47f%3A0x3027a76e352be40!2sSurabaya%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1750759568090!5m2!1sid!2sid"
+                width="100%"
+                height="100%"
+                style="min-height: 400px"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-dark border-t border-gray-800">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center space-x-2 mb-6 md:mb-0">
+            <div
+              class="w-10 h-10 rounded-full bg-neon flex items-center justify-center text-dark font-bold text-xl"
+            >
+              <img
+                src="https://scontent.cdninstagram.com/v/t51.2885-19/274647745_3215836695363484_6962188860604869137_n.jpg?stp=cp0_dst-jpg_s110x80_tt6&_nc_cat=108&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=n6qZbiEGQH0Q7kNvwEheruH&_nc_oc=Adm83GPD780qUcMTHN1D9ZRap_SL68waNzIKHAKtqkaiVqE3PZ3J1HWIgVYt-rTcxS4&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&oh=00_AfO1Fg9WewKNA0qNauYMq8mYLxwMeLApYHLLiwR7De86OA&oe=68605062"
+                alt=""
+              />
+            </div>
+            <span class="text-2xl font-bold gradient-text">OKEEBUYY</span>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+            <a href="#home" class="text-gray-400 hover:text-neon transition"
+              >Beranda</a
+            >
+            <a href="#menu" class="text-gray-400 hover:text-neon transition"
+              >Menu</a
+            >
+            <a
+              href="#testimoni"
+              class="text-gray-400 hover:text-neon transition"
+              >Testimoni Kami</a
+            >
+            <a href="#contact" class="text-gray-400 hover:text-neon transition"
+              >Lokasi</a
+            >
+          </div>
+
+          <div class="flex space-x-4">
+            <a
+              href="https://www.instagram.com/okeebuyy.id/"
+              class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-lg hover:bg-neon hover:text-dark"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/6285852015520"
+              class="social-icon w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-lg hover:bg-green-500 hover:text-white"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500"
+        >
+          <p>&copy; 2023 OKEEBUYY. All rights reserved. OKEEBUYY.</p>
+          <p class="mt-2 text-sm">
+            Made with <i class="fas fa-heart text-pink"></i> in Surabaya
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-neon text-dark rounded-full flex items-center justify-center text-xl opacity-0 invisible transition-all duration-300 hover:bg-opacity-90"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.contains("opacity-0");
+
+        if (isOpen) {
+          mobileMenu.classList.remove("opacity-0", "pointer-events-none");
+          mobileMenu.classList.add("opacity-100", "pointer-events-auto");
+          document.body.style.overflow = "hidden";
+        } else {
+          mobileMenu.classList.add("opacity-0", "pointer-events-none");
+          mobileMenu.classList.remove("opacity-100", "pointer-events-auto");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Filter Menu Items
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const menuItems = document.querySelectorAll(".menu-item");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("bg-neon", "text-dark");
+            btn.classList.add(
+              "bg-dark",
+              "border",
+              "border-gray-700",
+              "text-gray-300"
+            );
+          });
+
+          // Add active class to clicked button
+          button.classList.remove(
+            "bg-dark",
+            "border",
+            "border-gray-700",
+            "text-gray-300"
+          );
+          button.classList.add("bg-neon", "text-dark");
+
+          const filter = button.getAttribute("data-filter");
+
+          menuItems.forEach((item) => {
+            if (
+              filter === "all" ||
+              item.getAttribute("data-category") === filter
+            ) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // WhatsApp Order Function
+      function orderWhatsApp(itemName, price) {
+        const message = `Hai OKEEBUYY! Saya mau memesan ${itemName} seharga Rp ${price.toLocaleString(
+          "id-ID"
+        )}. Apakah masih tersedia?`;
+        const whatsappUrl = `https://wa.me/6285852015520?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(whatsappUrl, "_blank");
+      }
+
+      // Back to Top Button
+      const backToTopButton = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove("opacity-0", "invisible");
+          backToTopButton.classList.add("opacity-100", "visible");
+        } else {
+          backToTopButton.classList.add("opacity-0", "invisible");
+          backToTopButton.classList.remove("opacity-100", "visible");
+        }
+      });
+
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Cursor Effect
+      const cursorDot = document.querySelector(".cursor-dot");
+
+      document.addEventListener("mousemove", (e) => {
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+      });
+
+      // Add hover effect to links and buttons
+      const interactiveElements = document.querySelectorAll(
+        "a, button, .menu-card, .social-icon"
+      );
+
+      interactiveElements.forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          cursorDot.style.transform = "translate(-50%, -50%) scale(2)";
+          cursorDot.style.opacity = "0.5";
+        });
+
+        el.addEventListener("mouseleave", () => {
+          cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
+          cursorDot.style.opacity = "1";
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+
+            // Close mobile menu if open
+            mobileMenu.classList.add("opacity-0", "pointer-events-none");
+            mobileMenu.classList.remove("opacity-100", "pointer-events-auto");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+
+      // Animation on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(".menu-item, .testimonial");
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elementPosition < windowHeight - 100) {
+            element.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
+    </script>
+  </body>
+</html>
